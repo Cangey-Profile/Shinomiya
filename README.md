@@ -10,6 +10,7 @@ The best and most advanced robust moderation bot for your discord.
 - Moderation (Warn, Mute, ect.)
 - Auto Moderation (invite links, too many messages within a short period of time, ect.)
 - Custom Commands 
+- Custom Permission Levels
 - And many more moderation features.
 
 
