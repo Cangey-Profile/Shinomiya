@@ -6,7 +6,6 @@ import traceback
 from datetime import datetime, timedelta
 from time import time
 from typing import Any, Dict, List, Optional, Union
-from keep_alive import keep_alive
 import aiohttp
 import discord
 from discord.ext import commands
@@ -258,5 +257,4 @@ class Shinomiya(commands.Bot):
 
 if __name__ == '__main__':
     load_dotenv()
-    keep_alive()
     Shinomiya()
