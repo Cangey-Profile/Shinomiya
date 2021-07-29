@@ -456,3 +456,5 @@ def tryget(obj: Union[dict, list], key: Any) -> Any:
         return obj[key]
     except (KeyError, IndexError):
         return None
+
+    
