@@ -1,4 +1,4 @@
-# eris
+# lyss
 
 A bot based on clean, advanced moderation. 
 
