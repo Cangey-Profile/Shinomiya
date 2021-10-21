@@ -6,6 +6,7 @@ import traceback
 from datetime import datetime, timedelta
 from time import time
 from typing import Any, Dict, List, Optional, Union
+from keep_alive import keep_alive
 import aiohttp
 import discord
 from discord.ext import commands
@@ -17,7 +18,7 @@ from ext.errors import Underleveled
 from ext.utility import format_timedelta, tryint
 
 
-class Shinomiya(commands.Bot):
+class lyss(commands.Bot):
     def __init__(self) -> None:
         intents = discord.Intents.default()
         intents.members = True
@@ -257,4 +258,4 @@ class Shinomiya(commands.Bot):
 
 if __name__ == '__main__':
     load_dotenv()
-    Shinomiya()
+    lyss()
