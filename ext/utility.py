@@ -13,9 +13,9 @@ from discord.ext.commands import check
 from ext.time import UserFriendlyTime
 
 if TYPE_CHECKING:
-    from main import eris
+    from main import lyss
     from ext.database import DBDict
-    from ext.command import ErisCommand, ErisGroup  # noqa: F401
+    from ext.command import LyssCommand, LyssGroup  # noqa: F401
 
 
 # with open('ext/emojis.txt', encoding='utf8') as f:
@@ -60,7 +60,7 @@ def get_perm_level(member: discord.Member, guild_config: 'DBDict') -> Tuple[int,
     return (perm_level, highest_role)
 
 
-def get_command_level(cmd: Union['RainCommand', 'RainGroup'], guild_config: 'DBDict') -> int:
+def get_command_level(cmd: Union['LyssCommand', 'LyssGroup'], guild_config: 'DBDict') -> int:
     name = cmd.qualified_name
 
     try:
