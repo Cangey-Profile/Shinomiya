@@ -12,18 +12,18 @@ from typing import TYPE_CHECKING, Optional, Union
 
 import discord
 from discord.ext import commands
-from ext.command import ErisCommand, ErisGroup, command
+from ext.command import LyssCommand, LyssGroup, command
 from ext.paginator import Paginator
 from ext.utility import get_command_level, get_perm_level, owner
 
 if TYPE_CHECKING:
-    from main import eris
+    from main import lyss
 
 
 class Utility(commands.Cog):
     """General utility commands"""
 
-    def __init__(self, bot: 'eris') -> None:
+    def __init__(self, bot: 'lyss') -> None:
         self.bot = bot
         self.order = 4
 
@@ -160,7 +160,7 @@ class Utility(commands.Cog):
 
             await ctx.send(fmt or 'No changes to restart')
 
-    async def can_run(self, ctx: commands.Context, cmd: Union[ErisCommand, ErisGroup]) -> bool:
+    async def can_run(self, ctx: commands.Context, cmd: Union[LyssCommand, LyssGroup]) -> bool:
         ctx.command = cmd
         can_run = True
         if cmd.checks:
@@ -176,7 +176,7 @@ class Utility(commands.Cog):
         fmt = ''
         # maxlen = 0
 
-        for i in inspect.getmembers(cog, predicate=lambda x: isinstance(x, (RainCommand, RainGroup))):
+        for i in inspect.getmembers(cog, predicate=lambda x: isinstance(x, (LyssCommand, LyssGroup))):
             if i[1].parent:
                 # Ignore subcommands
                 continue
@@ -198,16 +198,16 @@ class Utility(commands.Cog):
 
         return None
 
-    async def format_command_help(self, ctx: commands.Context, prefix: str, cmd: Union[RainCommand, RainGroup]) -> Optional[discord.Embed]:
+    async def format_command_help(self, ctx: commands.Context, prefix: str, cmd: Union[LyssCommand, LyssGroup]) -> Optional[discord.Embed]:
         guild_config = await self.bot.db.get_guild_config(ctx.guild.id)
         cmd_level = get_command_level(cmd, guild_config)
 
         if await self.can_run(ctx, cmd) and cmd.enabled:
-            if isinstance(cmd, RainCommand):
+            if isinstance(cmd, LyssCommand):
                 em = discord.Embed(title=prefix + cmd.signature, description=f'{cmd.help}\n\nPermission level: {cmd_level}', color=0x7289da)
                 return em
 
-            elif isinstance(cmd, RainGroup):
+            elif isinstance(cmd, LyssGroup):
                 em = discord.Embed(title=prefix + cmd.signature, description=f'{cmd.help}\n\nPermission level: {cmd_level}', color=0x7289da)
                 subcommands = ''
                 commands = []
@@ -257,18 +257,18 @@ class Utility(commands.Cog):
 
     @command(0)
     async def about(self, ctx: commands.Context) -> None:
-        """About rainbot"""
-        await ctx.send('**What is rainbot?**\nrainbot is an full-fledged custom moderation bot!\nLook at <https://github.com/Cangey-Profile/eris/wiki/ for more information.\n\nInvite: <https://discord.com/oauth2/authorize?client_id=867521690145128448&scope=bot&permissions=2013785334>\nSupport Server:https://discord.gg/zvwMqkZpF4')
+        """About lyss"""
+        await ctx.send('**What is lyss?**\nlyss is an full-fledged custom moderation bot!\nLook at <https://github.com/Cangey-Profile/lyss/wiki/ for more information.\n\nInvite: <https://discord.com/oauth2/authorize?client_id=867521690145128448&scope=bot&permissions=2013785334>\nSupport Server:https://discord.gg/zvwMqkZpF4')
 
     @command(0)
     async def invite(self, ctx: commands.Context) -> None:
-        """Invite rainbot to your own server!"""
-        await ctx.send('<https://discord.com/oauth2/authorize?client_id=372748944448552961&scope=bot&permissions=2013785334>')
+        """Invite lyss to your own server!"""
+        await ctx.send('<ttps://discord.com/oauth2/authorize?client_id=867521690145128448&scope=bot&permissions=2013785334>')
 
     @command(0)
     async def server(self, ctx: commands.Context) -> None:
-        """Join the support server for rainbot!"""
-        await ctx.send('Join the rainbot support server: https://discord.gg/zvwMqkZpF4')
+        """Join the support server for lyss!"""
+        await ctx.send('Join the lyss support server: https://discord.gg/zvwMqkZpF4')
 
     @command(0)
     async def mylevel(self, ctx: commands.Context) -> None:
@@ -295,5 +295,5 @@ class Utility(commands.Cog):
             await channel.send(f'Left {guild.name} ({guild.id}) [{len(guild.members)} members] - Total: {len(self.bot.guilds)}')
 
 
-def setup(bot: 'eris') -> None:
+def setup(bot: 'lyss') -> None:
     bot.add_cog(Utility(bot))
